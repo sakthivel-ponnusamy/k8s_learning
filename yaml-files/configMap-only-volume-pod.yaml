@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-only-vol-pod
+  labels:
+    app: cm-only-vol-pod
+spec:
+  containers:
+    - name: cm-only-vol-container
+      image: alpine
+      command: ["sleep","1d"]
+      volumeMounts:
+        - name: cm-volume
+          mountPath: "/sakthi/cm"
+          readOnly: true
+  volumes:
+    - name: cm-volume
+      configMap:
+        name: game-demo
