@@ -1,6 +1,6 @@
 ---
-apiVersion:v1
-kind:pod
+apiVersion: v1
+kind: Pod
 metadata:
   name: nginx-pod
   labels:
@@ -9,10 +9,11 @@ metadata:
 spec:
   containers:
     - name: nginx-container
-      image: nginx
+      image: nginx:latest
       env:
         - name: DEMO_GREETING
           value: "Welcome Sakthi"
       ports:
-        - containerPort: 80
+        - name: nginx-port
+          containerPort: 80
 ---
