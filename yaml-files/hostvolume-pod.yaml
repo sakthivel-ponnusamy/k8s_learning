@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-host-volume
+spec:
+  containers:
+    - name: nginx-host-volume-cont
+      image: nginx
+      volumeMounts:
+        - name: host-vol
+          mountPath: /sakthi/host-vol
+  volumes:
+    - name: host-vol
+      hostPath:
+        path: /root/sakthi-host-vol

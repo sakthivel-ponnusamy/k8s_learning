@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-emptydir-vol
+spec:
+  containers:
+    - name: nginx-emptydir-vol-container
+      image: nginx
+      volumeMounts:
+        - name: ed-vol
+          mountPath: /emptydir
+  volumes:
+    - name: ed-vol
+      emptyDir:
+        medium: Memory
