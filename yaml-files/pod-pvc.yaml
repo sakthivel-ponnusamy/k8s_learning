@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod-pvc
+spec:
+  containers:
+    - name: nginx-pod-pvc-container
+      image: nginx
+      volumeMounts:
+        - name: vol1
+          mountPath: "/sakthi/pvc"
+  volumes:
+    - name: vol1
+      persistentVolumeClaim:
+        claimName: pvc-hostpath
