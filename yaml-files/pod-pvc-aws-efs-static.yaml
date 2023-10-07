@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-pvc-aws-efs-static
+spec:
+  containers:
+    - name: pod-pvc-aws-efs-static-cont
+      image: nginx
+      volumeMounts:
+        - name: vol1
+          mountPath: /sakthi/aws-efs-static
+  restartPolicy: OnFailure
+  volumes:
+    - name: vol1
+      persistentVolumeClaim:
+        claimName: pvc-aws-efs

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-aws-efs-dynamic
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: nginx-aws-efs-dynamic
+      labels:
+        env: dev
+    spec:
+      containers:
+        - name: nginx-aws-efs-dynamic-cont
+          image: nginx
+          ports:          
+            - name: nginx-port
+              containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - name: vol1
+              mountPath: /sakthi/aws-efs
+      volumes:
+        - name: vol1
+          persistentVolumeClaim:
+            claimName: pvc-aws-efs-dynamic
+  selector:
+    matchExpressions:
+      - {key: env, operator: In, values: [dev]}    
