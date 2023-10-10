@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod-test
+  labels:
+    app: nginx
+    env: dev
+spec:
+  serviceAccountName: sa-sakthi
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      env:
+        - name: DEMO_GREETING
+          value: "Welcome Sakthi"
+      ports:
+        - name: nginx-port
+          containerPort: 80
+---
