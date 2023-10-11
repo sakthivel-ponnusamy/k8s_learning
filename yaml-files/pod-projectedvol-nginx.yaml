@@ -1,0 +1,38 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod-proj-vol
+  labels:
+    app: nginx
+    env: dev
+spec:
+  containers:
+    - name: nginx-container-proj-vol
+      image: nginx:latest
+      env:
+        - name: DEMO_GREETING
+          value: "Welcome Sakthi"
+      ports:
+        - name: nginx-port
+          containerPort: 80
+      volumeMounts:
+        - name: projected-vol
+          mountPath: /sakthi
+          readOnly: true
+  volumes:
+    - name: projected-vol
+      projected:
+        sources:
+          - serviceAccountToken:
+              path: sa/my-sa-token
+          - configMap:
+              name: kube-root-ca.crt
+              items:
+                - key: ca.crt
+                  path: cm/my-cm.crt
+          - secret:
+              name: dotfile-secret
+              items:
+                - key: .secret-file
+                  path: secret/dotfile-secret
