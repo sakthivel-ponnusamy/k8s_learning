@@ -1,0 +1,16 @@
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: service-headless-without-selector
+  labels:
+    kubernetes.io/service-name: service-headless-without-selector
+addressType: IPv4
+endpoints:
+  - addresses:
+    - "10.244.1.254"
+  - addresses:
+    - "10.244.1.249"
+ports:
+  - name: ""
+    port: 82
+    protocol: TCP

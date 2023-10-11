@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-headless-with-selector
+spec:
+  type: ClusterIP
+  clusterIP: None
+  selector:
+    app: nginx-app
+    environment: dev
+  ports:
+    - port: 81
+      targetPort: 80
+

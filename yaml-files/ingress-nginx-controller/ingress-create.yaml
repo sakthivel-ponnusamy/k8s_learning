@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  creationTimestamp: "2023-10-08T07:10:10Z"
+  generation: 1
+  name: demo-localhost
+  namespace: default
+  resourceVersion: "461940"
+  uid: 9e5ba11e-9840-41c6-a9b3-d882c7d091ba
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: demo.localdev.me
+    http:
+      paths:
+      - backend:
+          service:
+            name: demo
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer: {}
+

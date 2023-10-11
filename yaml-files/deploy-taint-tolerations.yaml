@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy-taint-tol
+  labels:
+    app: nginx-app-taint-tol
+spec:
+  replicas: 4
+  template:
+    metadata:
+      name: nginx-pod-cont-taint-tol
+      labels:
+        name: nginx-app-taint-tol
+        env: dev
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:1.16.1
+          ports:
+            - containerPort: 80        
+      tolerations:
+        - key: env
+          operator: "Equal"
+          value: "prod"
+          effect: NoSchedule
+  selector:
+    matchLabels:
+      env: dev
+      name: nginx-app-taint-tol
