@@ -1,0 +1,27 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rolebinding-user-sakthi
+  namespace: my-project-dev
+subjects:
+  - kind: User
+    name: sakthi
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: edit_pod_deploy
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rolebinding-user-sakthi
+  namespace: my-project-prod
+subjects:
+  - kind: User
+    name: sakthi
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: view_pod_deploy
+  apiGroup: rbac.authorization.k8s.io

@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
+  namespace: nginx
   labels:
     app: nginx-app
 spec:
@@ -19,6 +20,15 @@ spec:
           image: nginx:1.16.1
           ports:
             - containerPort: 80
+      tolerations:
+        - key: team
+          effect: NoSchedule
+          value: developer
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+       maxSurge: 30%
+       maxUnavailable: 30%
   selector:
     matchLabels:
       env: dev

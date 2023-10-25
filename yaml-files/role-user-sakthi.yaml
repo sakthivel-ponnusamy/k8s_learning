@@ -1,0 +1,19 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: view_pod_deploy
+  namespace: my-project-prod
+rules:
+  - apiGroups: ["","apps"]
+    resources: ["pods","deployments"]
+    verbs: ["get","list","watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: edit_pod_deploy
+  namespace: my-project-dev
+rules:
+  - apiGroups: ["","apps"]
+    resources: ["pods","deployments","services","endpointslices","replicasets","daemonsets","volumes"]
+    verbs: ["get","list","watch","create","update","patch","delete"]

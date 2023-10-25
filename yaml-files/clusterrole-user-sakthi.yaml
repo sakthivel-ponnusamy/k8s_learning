@@ -1,0 +1,8 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: clusterrole-user-sakthi
+rules:
+  - apiGroups: ["","apps"]
+    resources: ["pods","deployments"]
+    verbs: ["get","list"]

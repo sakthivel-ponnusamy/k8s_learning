@@ -9,10 +9,20 @@ spec:
   ingressClassName: nginx
   defaultBackend:
     service:
-      name: error
+      name: default-backend
       port:
         name: svc-port
   rules:
+    - host: 
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: error
+                port:
+                  name: svc-port
     - host: www.layasatek.net
       http:
         paths:
@@ -20,7 +30,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: first
+                name: third
                 port:
                   name: svc-port
     - host: www.layasatek.net
@@ -33,7 +43,7 @@ spec:
                 name: first
                 port:
                   name: svc-port
-    - host: b.example.com
+    - host: www.layasatek.net
       http:
         paths:
           - path: /second
@@ -41,5 +51,15 @@ spec:
             backend:
               service:
                 name: second
+                port:
+                  name: svc-port
+    - host: www.layasatek.net
+      http:
+        paths:
+          - path: /fourth
+            pathType: Prefix
+            backend:
+              service:
+                name: fourth
                 port:
                   name: svc-port
